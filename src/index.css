@@ -1,0 +1,147 @@
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------
+   Brand tokens, sampled from the Our House Care Group logo
+   plum  = the house, children and wordmark
+   gold  = the sun and windows
+--------------------------------------------------------------- */
+@theme {
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  --color-plum-50: #faf5fb;
+  --color-plum-100: #f3e8f5;
+  --color-plum-200: #e6cfea;
+  --color-plum-300: #d2a9d8;
+  --color-plum-400: #b878c0;
+  --color-plum-500: #9c54a8;
+  --color-plum-600: #7f3489;
+  --color-plum-700: #662473;
+  --color-plum-800: #4a1556;
+  --color-plum-900: #3a0d45;
+  --color-plum-950: #250630;
+
+  --color-gold-50: #fff9eb;
+  --color-gold-100: #fef0cc;
+  --color-gold-200: #fde09a;
+  --color-gold-300: #fccb5f;
+  --color-gold-400: #f8bc45;
+  --color-gold-500: #eea425;
+  --color-gold-600: #d1820f;
+  --color-gold-700: #a8620c;
+  --color-gold-800: #864d11;
+
+  /* Text is solid black (or white on dark panels) for maximum readability. */
+  --color-ink: #000000;
+  --color-ink-soft: #1a1a1a;
+  --color-muted: #333333;
+  --color-line: #e4e1e6;
+
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.06);
+  --shadow-lift: 0 1px 3px rgb(0 0 0 / 0.08), 0 8px 20px -10px rgb(0 0 0 / 0.18);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-accordion-down: accordion-down 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-accordion-up: accordion-up 250ms ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+    to {
+      height: 0;
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-balance text-ink;
+    letter-spacing: -0.025em;
+  }
+
+  p {
+    @apply text-pretty;
+  }
+
+  ::selection {
+    background: var(--color-plum-200);
+    color: var(--color-plum-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-plum-600);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .prose-care p + p {
+    @apply mt-4;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
